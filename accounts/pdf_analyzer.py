@@ -34,7 +34,7 @@ def analyze_pdf(pdf_path):
     text_2 = "Here is a sentence containing a medicine name: "+text_2 +" Please extract and return only and only the medicine or drug names line by line dont give the sentence in response and any other text"
     
     
-    genai.configure(api_key='AIzaSyBWCNfnvcNGV26O86d9nDNb5KObVJMjXnc')
+    genai.configure(api_key='######')
     # Create a new conversation
     response = genai.chat(messages='Hello')
     response.last
