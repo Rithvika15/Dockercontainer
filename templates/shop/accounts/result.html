@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prescription Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #e7f3fe;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        li:nth-child(even) {
+            background-color: #d0e9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medicine Names</h1>
+        <ul>
+            {% for medicine in medicine_names %}
+                <li>{{medicine}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="container">
+        <h1>Available Names</h1>
+        <ul>
+            {% for medicine in medicine_names %}
+                {% for product in products %}
+                    {% if product.name == medicine %}
+                        <li>
+                            <a href="{% url 'shop:product_details' category_slug='medicine' product_details_slug=product.slug %}">
+                                {{ product.name }} - ${{ product.price }}
+                            </a>                            
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% empty %}
+                <li class="no-products">No products found for the extracted medicine names.</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    
+</body>
+</html>
+

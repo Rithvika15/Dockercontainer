@@ -85,3 +85,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.first_name
+
+
+class Prescription(models.Model):
+    pdf_file = models.FileField(upload_to='uploads/')

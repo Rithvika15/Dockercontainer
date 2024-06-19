@@ -93,20 +93,20 @@
                 {% for cart_item in cart_items %}
                 <tr>
                   <th>{{cart_item.product.name}} x {{cart_item.quantity}}</th>
-                  <td>${{cart_item.sub_total}}</td>
+                  <td>₹{{cart_item.sub_total}}</td>
                 </tr>
                 {% endfor %}
                 <tr>
                   <th>Shipping and Handing</th>
-                  <td>${{handing}}</td>
+                  <td>₹{{handing}}</td>
                 </tr>
                 <tr>
                   <th>Vat</th>
-                  <td>${{vat}}</td>
+                  <td>₹{{vat}}</td>
                 </tr>
                 <tr style="color:#d99879">
                   <th>Order total</th>
-                  <td>${{order_total}}</td>
+                  <td>₹{{order_total}}</td>
                 </tr>
               </tbody>
               <tfoot>

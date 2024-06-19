@@ -81,22 +81,22 @@
                             {% endif %}
                           </p>
                         </td>
-                        <td class="text-center">${{item.product_price}}</td>
+                        <td class="text-center">₹{{item.product_price}}</td>
                         <td class="text-center">{{item.quantity}}</td>
-                        <td class="text-center">${{item.sub_total}}  </td>
+                        <td class="text-center">₹{{item.sub_total}}  </td>
                       </tr>
                       {% endfor %}
                       <tr>
                         <th colspan="4" class="text-left">Sub Total</th>
-                        <th class="text-center">${{subtotal}}  </th>
+                        <th class="text-center">₹{{subtotal}}  </th>
                       </tr>
                       <tr>
                         <th colspan="4" class="text-left">Handing</th>
-                        <th class="text-center">$15.0  </th>
+                        <th class="text-center">₹15.0  </th>
                       </tr>
                       <tr>
                         <th colspan="4" class="text-left">Tax</th>
-                        <th class="text-center">${{order.tax}}  </th>
+                        <th class="text-center">₹{{order.tax}}  </th>
                       </tr>
                       
                     </tbody>
@@ -104,7 +104,7 @@
                       
                       <tr>
                         <th colspan="4" class="text-left">Grand Total</th>
-                        <th class="text-center">${{order.order_total}}  </th>
+                        <th class="text-center">₹{{order.order_total}}  </th>
                       </tr>
                     </tfoot>
                   </table>

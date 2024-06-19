@@ -1,5 +1,6 @@
 from django import forms
 from .models import Account ,UserProfile
+from .models import Prescription 
 
 class RegisterationFrom(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -56,3 +57,13 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
+
+
+
+
+
+
+class PrescriptionForm(forms.ModelForm):
+    class Meta:
+        model = Prescription
+        fields = ['pdf_file']    

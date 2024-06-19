@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterationFrom, UserForm, UserProfileForm
 from .models import Account
+from shop.models import Product,Category
 
 # verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -25,6 +26,13 @@ from cart.models import Cart, CartItem
 from orders.models import Order
 from .models import UserProfile
 from orders.models import OrderProduct
+
+from django.shortcuts import render, redirect
+from .forms import PrescriptionForm
+from .models import Prescription
+from .pdf_analyzer import analyze_pdf
+
+from django.core.files.storage import FileSystemStorage
 
 def register(request):
     if request.method == "POST":
@@ -326,3 +334,29 @@ def reset_password(request):
 
     else:
         return render(request, 'shop/accounts/forget_password/reset_password.html')
+    
+
+from .forms import PrescriptionForm
+from .models import Prescription
+
+def upload_prescription(request):
+    if request.method == 'POST':
+        form = PrescriptionForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = request.FILES['pdf_file']
+            fs = FileSystemStorage()
+            filename = fs.save(uploaded_file.name, uploaded_file)
+            file_path = fs.path(filename)
+            medicine_names = analyze_pdf(file_path)
+            products = Product.objects.filter()
+            print(products)
+            return render(request, 'shop/accounts/result.html', {
+                'medicine_names': medicine_names,
+                'products': products
+            })
+
+            
+          
+    else:
+        form = PrescriptionForm()
+    return render(request, 'shop/accounts/upload.html', {'form': form})
